@@ -1,5 +1,6 @@
 package com.phantom5702.my_generator.util;
 
+import cn.hutool.json.JSONUtil;
 import com.phantom5702.my_generator.entity.ColumnEntity;
 import com.phantom5702.my_generator.entity.TableEntity;
 import org.apache.commons.configuration.Configuration;
@@ -131,6 +132,7 @@ public class GenUtils {
         map.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
         VelocityContext context = new VelocityContext(map);
 
+        System.out.println(JSONUtil.toJsonStr(map));
         //获取模板列表
         List<String> templates = getTemplates();
         for (String template : templates) {

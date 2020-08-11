@@ -52,6 +52,11 @@
             <version>1.7</version>
         </dependency>
         <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.3.7</version>
+        </dependency>
+        <dependency>
             <groupId>commons-configuration</groupId>
             <artifactId>commons-configuration</artifactId>
             <version>${commons.configuration.version}</version>

@@ -10,6 +10,9 @@ import ${package}.${moduleName}.entity.${className}Entity;
  */
 public interface ${className}Service {
 
-
+    int save(${className}Entity entity);
+    int delete(${pk.attrType} ${pk.attrname});
+    int update(${className}Entity entity);
+    ${className}Entity getById(${pk.attrType} ${pk.attrname});
 }
 

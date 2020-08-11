@@ -1,5 +1,6 @@
 package ${package}.${moduleName}.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 
@@ -11,5 +12,23 @@ import ${package}.${moduleName}.service.${className}Service;
 @Service("${classname}Service")
 public class ${className}ServiceImpl implements ${className}Service {
 
+    @Autowired
+    ${className}Dao ${classname}Dao;
+
+    int save(${className}Entity entity){
+        return ${classname}Dao.insertSelective(entity);
+    }
+
+    int delete(${pk.attrType} ${pk.attrname}){
+        return ${classname}Dao.deleteSoftById(${pk.attrname});
+    }
+
+    int update(${className}Entity entity){
+        return ${classname}Dao.updateByPrimaryKeySelective(entity);
+    }
+
+     ${className}Entity getById(${pk.attrType} ${pk.attrname}){
+        return ${classname}Dao.selectSoftById(${pk.attrname});
+    }
 
 }

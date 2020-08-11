@@ -32,14 +32,20 @@ public class GenUtils {
 
     public static List<String> getTemplates() {
         List<String> templates = new ArrayList<String>();
-        templates.add("template/Entity.java.vm");
-        templates.add("template/Dao.xml.vm");
+//        templates.add("template/Entity.java.vm");
+//        templates.add("template/Dao.xml.vm");
+//        templates.add("template/Service.java.vm");
+//        templates.add("template/ServiceImpl.java.vm");
+//        templates.add("template/Controller.java.vm");
+//        templates.add("template/Dao.java.vm");
 
-        templates.add("template/Service.java.vm");
-        templates.add("template/ServiceImpl.java.vm");
-        templates.add("template/Controller.java.vm");
-        templates.add("template/Dao.java.vm");
-//
+
+        templates.add("template/WorkEntity.java.vm");
+        templates.add("template/WorkDao.java.vm");
+        templates.add("template/WorkService.java.vm");
+        templates.add("template/WorkServiceImpl.java.vm");
+        templates.add("template/WorkController.java.vm");
+        templates.add("template/WorkDao.xml.vm");
         return templates;
     }
 
@@ -135,6 +141,7 @@ public class GenUtils {
 
             try {
                 //添加到zip
+                System.out.println("添加文件"+template);
                 zip.putNextEntry(new ZipEntry(getFileName(template, tableEntity.getClassName(), config.getString("package"), config.getString("moduleName"))));
                 IOUtils.write(sw.toString(), zip, "UTF-8");
                 IOUtils.closeQuietly(sw);
@@ -184,6 +191,8 @@ public class GenUtils {
         if (StringUtils.isNotBlank(packageName)) {
             packagePath += packageName.replace(".", File.separator) + File.separator + moduleName + File.separator;
         }
+
+        //------------------------------------------------------------------------------------------------------------------------
         if (template.contains("Entity.java.vm")) {
             return packagePath + "entity" + File.separator + className + "Entity.java";
         }
@@ -207,6 +216,7 @@ public class GenUtils {
         if (template.contains("Dao.xml.vm")) {
             return "main" + File.separator + "resources" + File.separator + "mapper" + File.separator + moduleName + File.separator + className + "Dao.xml";
         }
+        //------------------------------------------------------------------------------------------------------------------------
         return null;
     }
 

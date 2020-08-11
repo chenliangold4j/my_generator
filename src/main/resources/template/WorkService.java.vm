@@ -1,0 +1,15 @@
+package ${package}.${moduleName}.service;
+
+import ${package}.${moduleName}.entity.${className}Entity;
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Service {
+
+
+}
+

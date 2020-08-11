@@ -1,0 +1,16 @@
+package ${package}.${moduleName}.dao;
+
+import ${package}.${moduleName}.entity.${className}Entity;
+import com.gonghui.tkplus.mapper.MyMapper;
+import tk.mybatis.mapper.common.Mapper;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Dao extends Mapper<${className}Entity>,MyMapper<${className}Entity>{
+	
+}

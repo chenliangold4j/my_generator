@@ -4,12 +4,14 @@ import com.phantom5702.my_generator.dao.GeneratorDao;
 import com.phantom5702.my_generator.util.GenUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipOutputStream;
 
+@Component
 public class GeneratorService {
 
     @Autowired

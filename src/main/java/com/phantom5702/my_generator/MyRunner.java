@@ -19,6 +19,6 @@ public class MyRunner implements CommandLineRunner {
         System.out.println("runner ");
         String tableName = "innovate_studio";
         byte[] bytes = generatorService.generatorCode(new String[]{tableName});
-        IOUtils.write(bytes,new FileOutputStream("C:\\Users\\Administrator\\Desktop\\test.zip"));
+        IOUtils.write(bytes, new FileOutputStream("C:\\Users\\Administrator\\Desktop\\test.zip"));
     }
 }

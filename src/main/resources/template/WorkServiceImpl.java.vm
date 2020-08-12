@@ -2,7 +2,10 @@ package ${package}.${moduleName}.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Map;
+import tk.mybatis.mapper.entity.Example;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import java.util.List;
 
 import ${package}.${moduleName}.dao.${className}Dao;
 import ${package}.${moduleName}.entity.${className}Entity;
@@ -14,6 +17,21 @@ public class ${className}ServiceImpl implements ${className}Service {
 
     @Autowired
     ${className}Dao ${classname}Dao;
+
+    List<${className}Entity> list(
+        #foreach ($column in $columns) $column.attrType $column.attrname, #end Integer page,Integer size
+    ){
+        Example example = new Example(${className}Entity.class);
+        Example.Criteria criteria = example.createCriteria();
+        #foreach ($column in $columns)
+            if( $column.attrname != null){
+                criteria.andEqualTo("$column.attrname",$column.attrname);
+            }
+        #end
+        PageHelper.startPage(page, size);
+        return  ${classname}Dao.selectByExample(example);
+
+    }
 
     int save(${className}Entity entity){
         return ${classname}Dao.insertSelective(entity);

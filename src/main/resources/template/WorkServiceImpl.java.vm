@@ -6,6 +6,7 @@ import tk.mybatis.mapper.entity.Example;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import java.util.List;
+import java.util.Date;
 
 import ${package}.${moduleName}.dao.${className}Dao;
 import ${package}.${moduleName}.entity.${className}Entity;
@@ -18,7 +19,7 @@ public class ${className}ServiceImpl implements ${className}Service {
     @Autowired
     ${className}Dao ${classname}Dao;
 
-    List<${className}Entity> list(
+    public List<${className}Entity> list(
         #foreach ($column in $columns) $column.attrType $column.attrname, #end Integer page,Integer size
     ){
         Example example = new Example(${className}Entity.class);
@@ -33,19 +34,19 @@ public class ${className}ServiceImpl implements ${className}Service {
 
     }
 
-    int save(${className}Entity entity){
+    public int save(${className}Entity entity){
         return ${classname}Dao.insertSelective(entity);
     }
 
-    int delete(${pk.attrType} ${pk.attrname}){
+    public int delete(${pk.attrType} ${pk.attrname}){
         return ${classname}Dao.deleteSoftById(${pk.attrname});
     }
 
-    int update(${className}Entity entity){
+    public int update(${className}Entity entity){
         return ${classname}Dao.updateByPrimaryKeySelective(entity);
     }
 
-     ${className}Entity getById(${pk.attrType} ${pk.attrname}){
+    public  ${className}Entity getById(${pk.attrType} ${pk.attrname}){
         return ${classname}Dao.selectSoftById(${pk.attrname});
     }
 

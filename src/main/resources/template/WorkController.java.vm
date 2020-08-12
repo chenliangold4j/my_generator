@@ -2,7 +2,7 @@ package ${package}.${moduleName}.controller;
 
 import java.util.Arrays;
 import java.util.Map;
-
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ${package}.${moduleName}.entity.${className}Entity;
 import ${package}.${moduleName}.service.${className}Service;
-import ${mainPath}.common.utils.PageUtils;
-import ${mainPath}.common.utils.R;
-
+import com.gonghui.entity.Result;
 
 
 /**
@@ -34,9 +32,14 @@ public class ${className}Controller {
      * 列表
      */
     @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = ${classname}Service.queryPage(params);
-        return R.ok().put("page", page);
+    Object list(
+        #foreach ($column in $columns)
+             $column.attrType $column.attrname,
+        #end
+            Integer page,Integer size
+    ){
+        Object page = ${classname}Service.list(#foreach ($column in $columns) $column.attrname,#end page,size);
+        return Result.createDefaultSuccessDataResult(page);
     }
 
 
@@ -44,36 +47,33 @@ public class ${className}Controller {
      * 信息
      */
     @RequestMapping("/info/{${pk.attrname}}")
-    public R info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
+    public Object info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
 		${className}Entity ${classname} = ${classname}Service.getById(${pk.attrname});
-        return R.ok().put("${classname}", ${classname});
+        return Result.createDefaultSuccessDataResult(${classname});
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody ${className}Entity ${classname}){
-		${classname}Service.save(${classname});
-        return R.ok();
+    public Object save(@RequestBody ${className}Entity ${classname}){
+        return Result.createDefaultSuccessDataResult(${classname}Service.save(${classname}));
     }
 
     /**
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody ${className}Entity ${classname}){
-		${classname}Service.updateById(${classname});
-        return R.ok();
+    public Object update(@RequestBody ${className}Entity ${classname}){
+        return Result.createDefaultSuccessDataResult(${classname}Service.updateById(${classname}));
     }
 
     /**
      * 删除
      */
     @RequestMapping("/delete")
-    public R delete(${pk.attrType} ${pk.attrname}){
-		${classname}Service.delete(${pk.attrname});
-        return R.ok();
+    public Object delete(${pk.attrType} ${pk.attrname}){
+        return Result.createDefaultSuccessDataResult(${classname}Service.delete(${pk.attrname}));
     }
 
 }

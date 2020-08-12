@@ -1,6 +1,7 @@
 package ${package}.${moduleName}.service;
 
 import java.util.List;
+import java.util.Date;
 import ${package}.${moduleName}.entity.${className}Entity;
 /**
  * ${comments}

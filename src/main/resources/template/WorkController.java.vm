@@ -38,8 +38,8 @@ public class ${className}Controller {
         #end
             Integer page,Integer size
     ){
-        Object page = ${classname}Service.list(#foreach ($column in $columns) $column.attrname,#end page,size);
-        return Result.createDefaultSuccessDataResult(page);
+        Object pages = ${classname}Service.list(#foreach ($column in $columns) $column.attrname,#end page,size);
+        return Result.createDefaultSuccessDataResult(pages);
     }
 
 
@@ -65,7 +65,7 @@ public class ${className}Controller {
      */
     @RequestMapping("/update")
     public Object update(@RequestBody ${className}Entity ${classname}){
-        return Result.createDefaultSuccessDataResult(${classname}Service.updateById(${classname}));
+        return Result.createDefaultSuccessDataResult(${classname}Service.update(${classname}));
     }
 
     /**

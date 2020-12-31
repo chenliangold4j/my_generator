@@ -2,9 +2,9 @@ spring:
   datasource:
     #MySQL配置
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://1.194.232.182:3307/gonghui_shop?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/sports?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: root
+    password: 123456
 
 mybatis-plus:
   mapperLocations: classpath:mapper/**/*.xml

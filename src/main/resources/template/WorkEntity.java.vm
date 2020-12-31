@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * ${comments}
@@ -20,6 +22,7 @@ import lombok.Data;
  */
 @Data
 @Table(name="${tableName}")
+@Api(tags = "${tableName}")
 public class ${className}Entity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,6 +34,7 @@ public class ${className}Entity implements Serializable {
 @Id
 @GeneratedValue(generator = "JDBC")
 	#end
+@ApiModelProperty(value = "$column.comments")
 private $column.attrType $column.attrname;
 #end
 

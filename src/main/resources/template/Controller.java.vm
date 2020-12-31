@@ -33,7 +33,7 @@ public class ${className}Controller {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = ${classname}Service.queryPage(params);
 
@@ -44,8 +44,8 @@ public class ${className}Controller {
     /**
      * 信息
      */
-    @RequestMapping("/info/{${pk.attrname}}")
-    public R info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
+    @GetMapping("/info")
+    public R info(${pk.attrType} ${pk.attrname}){
 		${className}Entity ${classname} = ${classname}Service.getById(${pk.attrname});
 
         return R.ok().put("${classname}", ${classname});
@@ -74,7 +74,7 @@ public class ${className}Controller {
     /**
      * 删除
      */
-    @RequestMapping("/delete")
+    @GetMapping("/delete")
     public R delete(@RequestBody ${pk.attrType}[] ${pk.attrname}s){
 		${classname}Service.removeByIds(Arrays.asList(${pk.attrname}s));
 

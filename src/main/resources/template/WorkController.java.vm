@@ -10,6 +10,8 @@ import ${package}.${moduleName}.service.${className}Service;
 import com.gonghui.entity.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 
 /**
  * ${comments}
@@ -30,14 +32,14 @@ public class ${className}Controller {
      */
     @GetMapping("/list")
     @ApiOperation("列表")
-    Object list(
+    Result<PageInfo<${className}Entity>> list(
         #foreach ($column in $columns)
              $column.attrType $column.attrname,
         #end
             Integer page,Integer size
     ){
-        Object pages = ${classname}Service.list(#foreach ($column in $columns) $column.attrname,#end page,size);
-        return Result.createDefaultSuccessDataResult(pages);
+        Page<${className}Entity> pages = (Page)${classname}Service.list(#foreach ($column in $columns) $column.attrname,#end page,size);
+        return Result.createDefaultSuccessDataResult(pages.toPageInfo());
     }
 
 
@@ -46,7 +48,7 @@ public class ${className}Controller {
      */
     @GetMapping("/info")
     @ApiOperation("信息")
-    public Object info(${pk.attrType} ${pk.attrname}){
+    public  Result<${className}Entity>  info(${pk.attrType} ${pk.attrname}){
 		${className}Entity ${classname} = ${classname}Service.getById(${pk.attrname});
         return Result.createDefaultSuccessDataResult(${classname});
     }
@@ -56,7 +58,7 @@ public class ${className}Controller {
      */
     @PostMapping("/save")
     @ApiOperation("新增")
-    public Object save(@RequestBody ${className}Entity ${classname}){
+    public Result<Integer> save(@RequestBody ${className}Entity ${classname}){
         return Result.createDefaultSuccessDataResult(${classname}Service.save(${classname}));
     }
 
@@ -65,7 +67,7 @@ public class ${className}Controller {
      */
     @PostMapping("/update")
     @ApiOperation("修改")
-    public Object update(@RequestBody ${className}Entity ${classname}){
+    public Result<Integer> update(@RequestBody ${className}Entity ${classname}){
         return Result.createDefaultSuccessDataResult(${classname}Service.update(${classname}));
     }
 
@@ -74,7 +76,7 @@ public class ${className}Controller {
      */
     @GetMapping("/delete")
     @ApiOperation("删除")
-    public Object delete(${pk.attrType} ${pk.attrname}){
+    public Result<Integer> delete(${pk.attrType} ${pk.attrname}){
         return Result.createDefaultSuccessDataResult(${classname}Service.delete(${pk.attrname}));
     }
 

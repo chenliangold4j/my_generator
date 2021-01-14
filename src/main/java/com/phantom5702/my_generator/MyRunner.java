@@ -17,7 +17,7 @@ public class MyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //        String tableName = "gonghui_store_service";
-        byte[] bytes = generatorService.generatorCode(new String[]{"talents_type"});
+        byte[] bytes = generatorService.generatorCode(new String[]{"notification_info"});
         IOUtils.write(bytes, new FileOutputStream("C:\\Users\\Administrator\\Desktop\\test.zip"));
     }
 }
